@@ -1,18 +1,13 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Products from "./Products/Products";
-import { Container } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Weather from "./Weather App/Weather";
 
-function App(){
-  return(
-    <div className="App">
-      <Container>
-      <Products />
-      </Container>
-      
+function App() {
+  return (
+    <div>
+      <Weather />
     </div>
   );
 }
-
 
 export default App;
