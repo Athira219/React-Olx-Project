@@ -1,21 +1,42 @@
-import React from "react";
-import NavBar from "./ComponentsN/NavBar/NavBar";
-import {action, originals,horror, comedy} from './urls'
+import React, { useEffect, useContext } from "react";
+
+import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
+import Create from "./Pages/Create";
+import View from "./Pages/ViewPost";
+
 import "./App.css";
-import Banner from "./ComponentsN/Banner/Banner";
-import RowPost from "./ComponentsN/RowPost/RowPost";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Post from "./store/PostContext";
+
+/**
+ * ?  =====Import Components=====
+ */
+import Home from "./Pages/Home";
+import { AuthContext, firebaseContext } from "./store/Context";
 
 function App() {
+  const { setUser } = useContext(AuthContext);
+  const { firebase } = useContext(firebaseContext);
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  });
   return (
     <div>
-      <NavBar />
-      <Banner />
-      <RowPost url={originals}  title='Netflix Originals'/>
-      <RowPost url={action} title='Action' isSmall />
-      <RowPost url={comedy} title='Comedy' isSmall />
-      
-      <RowPost url={horror} title='Horror' isSmall />
-
+      <Post>
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<Home />}></Route>
+            <Route path="/signup" element={<Signup />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/create" element={<Create />}></Route>
+            <Route path="/view" element={<View />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </Post>
     </div>
   );
 }
