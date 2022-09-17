@@ -2,6 +2,7 @@
   "name": "react-app",
   "version": "0.1.0",
   "private": true,
+  "homepage":"http://Athira219.github.io/React-Olx-Project",
   
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
